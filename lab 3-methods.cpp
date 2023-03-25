@@ -1,60 +1,55 @@
+#include<vector>
 #include <iostream>
-#include <vector>
-#include <optional>
-
+#include<optional>
 using namespace std;
-
-class Pie
+class Implement
 {
-  private:
-     string name;
-     string description;
-  public:
-     Pie Yummy (string new_description)
-   {
-     this->description = move(new_description);
-     return *this;
- 
-   }
-      string Taste()
-   {
-     return this->description;
-   
-   };
-   
-
+private:
+	string size;
+public:
+	Implement SizeOf(string Newsize)
+	{
+		this->size = move(Newsize);
+		return *this;
+	}
+	string CurrentSize()
+	{
+		return this->size;
+	}
+};
+class Box
+{
+private:
+	int number;
+	optional<vector<Implement>> ourImplement;
+public:
+	void Numbering(int Newnumber)
+	{
+		this->number = move(Newnumber);
+	}
+	void UsingOf(const Implement& implement)
+	{
+		this->ourImplement->push_back(implement);
+	}
+	Implement PutIn()
+	{
+		Implement put = this->ourImplement->back();
+		this->ourImplement->pop_back();
+		return put;
+	}
 };
 
-class Human
-{
-  private:
-    string name;
-    optional<vector<Pie>> favouritePies;
-  public:
-    void NameHuman (string neww)
-  {
-    this->name = move (neww);
-  }
-    void GivePie (const Pie &pie)
-  {
-    this->favouritePies->push_back(pie);
-  }
-  Pie EatPie () {
-    Pie eaten = this->favouritePies->back();
-    this->favouritePies->pop_back();
-    return eaten;
-  }
 
-};
+
 
 int main() {
-  Human girl;
-  girl.NameHuman("Martyna");
-  Pie pie;
-  Pie sweetPie = pie.Yummy("delicious");
-  girl.GivePie(sweetPie);
-  Pie tastyPie = girl.EatPie();
-  cout << tastyPie.Taste();
- 
- 
+	Box myBox;
+	Implement hamer;
+	Implement newHamer = hamer.SizeOf("8");
+	myBox.UsingOf(newHamer);
+	Implement hiddenImplement = myBox.PutIn();
+	cout << hiddenImplement.CurrentSize();
+
+
+	return 0;
 }
